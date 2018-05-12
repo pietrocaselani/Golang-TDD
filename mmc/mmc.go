@@ -2,20 +2,17 @@ package mmc
 
 // MMC Calculates and returns the MMC
 func MMC(numbers ...int) int {
-	lenght := len(numbers)
-	divider := 2
+	currentDivider := 2
 	dividerCount := 0
 	var dividers []int
 
 	finished := false
 
 	for !finished {
-		for i := 0; i < lenght; i++ {
-			index := lenght - i - 1
-			number := numbers[index]
-			if number%divider == 0 {
+		for index, number := range numbers {
+			if number%currentDivider == 0 {
 				dividerCount++
-				numbers[index] = number / divider
+				numbers[index] = number / currentDivider
 			}
 		}
 
@@ -27,10 +24,10 @@ func MMC(numbers ...int) int {
 		}
 
 		if dividerCount == 0 {
-			divider++
+			currentDivider++
 		} else {
 			dividerCount = 0
-			dividers = append(dividers, divider)
+			dividers = append(dividers, currentDivider)
 		}
 	}
 
